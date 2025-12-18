@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to IFET!</title>
+  <link rel="stylesheet" href="../common.css">
+</head>
+<body>
+  <div class="container">
+    <div class="panel">
+      <h1 class="page-title" data-i18n="title">Welcome to IFET! 👋</h1>
+      <p class="page-subtitle" data-i18n="subtitle">Instagram Follower Export Tool - Export followers and following lists easily</p>
+      
+      <ol class="instruction-list">
+        <li data-i18n="step1">Open any Instagram profile in your browser</li>
+        <li data-i18n="step2">Click the IFET extension icon in your browser toolbar</li>
+        <li data-i18n="step3">Choose "Followers" or "Following" and click "Start exporting"</li>
+        <li data-i18n="step4">Wait for the export to complete, then save as CSV or XLSX</li>
+      </ol>
+      
+      <div class="button-group">
+        <button class="btn btn-primary" onclick="window.close()" data-i18n="btnGetStarted">Get Started</button>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p data-i18n="footer">Need help? <a href="support.html?lang={{LANG}}" data-i18n-link="support">Contact Support</a></p>
+    </div>
+  </div>
+  
+  <script src="../lang.js"></script>
+  <script>
+    // Translations
+    const translations = {
+      en: {
+        title: 'Welcome to IFET! 👋',
+        subtitle: 'Instagram Follower Export Tool - Export followers and following lists easily',
+        step1: 'Open any Instagram profile in your browser',
+        step2: 'Click the IFET extension icon in your browser toolbar',
+        step3: 'Choose "Followers" or "Following" and click "Start exporting"',
+        step4: 'Wait for the export to complete, then save as CSV or XLSX',
+        btnGetStarted: 'Get Started',
+        footer: 'Need help?',
+        support: 'Contact Support'
+      },
+      ru: {
+        title: 'Добро пожаловать в IFET! 👋',
+        subtitle: 'Instagram Follower Export Tool - Экспорт подписчиков и подписок легко и быстро',
+        step1: 'Откройте любой профиль Instagram в браузере',
+        step2: 'Нажмите на иконку расширения IFET в панели браузера',
+        step3: 'Выберите "Подписчики" или "Подписки" и нажмите "Начать экспорт"',
+        step4: 'Дождитесь завершения экспорта, затем сохраните в CSV или XLSX',
+        btnGetStarted: 'Начать работу',
+        footer: 'Нужна помощь?',
+        support: 'Связаться с поддержкой'
+      }
+    };
+    
+    // Wait for lang.js to load and DOM to be ready
+    function initTranslations() {
+      if (window.IFET && window.IFET.initTranslations) {
+        window.IFET.initTranslations(translations);
+        
+        // Update footer link with current language
+        const footerText = document.querySelector('.footer p');
+        if (footerText && window.IFET.isLanguageSupported) {
+          const lang = window.IFET.currentLang;
+          footerText.innerHTML = translations[lang].footer + ' <a href="../support/index.html?lang=' + lang + '">' + translations[lang].support + '</a>';
+        }
+      } else {
+        // Retry if lang.js hasn't loaded yet
+        setTimeout(initTranslations, 50);
+      }
+    }
+    
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initTranslations);
+    } else {
+      initTranslations();
+    }
+  </script>
+</body>
+</html>
+
