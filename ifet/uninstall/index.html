@@ -3,62 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Uninstall Feedback - IFET</title>
+  <title>Instagram Follower Export Tool — Feedback</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/icon32.png?v=20251219">
+  <link rel="icon" type="image/png" sizes="16x16" href="../icons/icon16.png?v=20251219">
+  <link rel="apple-touch-icon" sizes="128x128" href="../icons/icon128.png?v=20251219">
   <link rel="stylesheet" href="../common.css">
+  <style>
+    .page-topbar .brand-name {
+      color: var(--text-secondary);
+    }
+  </style>
 </head>
 <body>
   <div class="container">
+    <div class="page-topbar">
+      <div class="brand" aria-label="Instagram Follower Export Tool" style="justify-content: center; width: 100%;">
+        <div class="brand-name" data-i18n="extName">Instagram Follower Export Tool</div>
+      </div>
+    </div>
+
     <div class="panel" id="feedbackForm">
-      <h1 class="page-title" data-i18n="title">Why did you uninstall IFET? 😢</h1>
-      <p class="page-subtitle" data-i18n="subtitle">Your feedback helps us improve the extension</p>
+      <h1 class="page-title" data-i18n="title">Why did you uninstall?</h1>
       
-      <div class="checkbox-group">
-        <label class="checkbox-label">
-          <input type="checkbox" name="reason" value="not_working">
-          <span class="checkmark"></span>
-          <span data-i18n="reason1">Didn't work as expected</span>
-        </label>
-        
-        <label class="checkbox-label">
-          <input type="checkbox" name="reason" value="too_slow">
-          <span class="checkmark"></span>
-          <span data-i18n="reason2">Too slow</span>
-        </label>
-        
-        <label class="checkbox-label">
-          <input type="checkbox" name="reason" value="found_better">
-          <span class="checkmark"></span>
-          <span data-i18n="reason3">Found a better alternative</span>
-        </label>
-        
-        <label class="checkbox-label">
-          <input type="checkbox" name="reason" value="privacy">
-          <span class="checkmark"></span>
-          <span data-i18n="reason4">Privacy concerns</span>
-        </label>
-        
-        <label class="checkbox-label">
-          <input type="checkbox" name="reason" value="other">
-          <span class="checkmark"></span>
-          <span data-i18n="reason5">Other</span>
-        </label>
-      </div>
-      
-      <div class="form-group">
-        <label for="details" data-i18n="detailsLabel">Additional details (optional)</label>
-        <textarea id="details" placeholder="" data-i18n="detailsPlaceholder"></textarea>
-      </div>
-      
-      <div class="button-group">
-        <button class="btn btn-secondary" onclick="window.close()" data-i18n="btnSkip">Skip</button>
-        <button class="btn btn-primary" onclick="submitFeedback()" data-i18n="btnSend">Send Feedback</button>
+      <form onsubmit="submitFeedback(event)">
+        <div class="form-group">
+          <textarea id="details" placeholder="" data-i18n="detailsPlaceholder"></textarea>
+        </div>
+
+        <div class="form-actions-center">
+          <button type="submit" class="btn btn-primary" data-i18n="btnSend">Send Feedback</button>
+        </div>
+      </form>
+
+      <div class="creator-note">
+        <div class="creator-note-text">
+          <span data-i18n="creatorText">Or message me on Telegram:</span><br>
+          <a href="https://t.me/seleznev_tg" target="_blank" rel="noopener noreferrer">@seleznev_tg</a>
+        </div>
       </div>
     </div>
     
     <div class="panel" id="successMessage" style="display: none;">
       <div class="success-message">
         <h1 data-i18n="successTitle">Thank you! 🙏</h1>
-        <p data-i18n="successText">Your feedback has been received. We'll work on making IFET better!</p>
+        <p data-i18n="successText">Your feedback has been received. We'll work on making Instagram Follower Export Tool better!</p>
       </div>
     </div>
   </div>
@@ -69,34 +57,24 @@
     // Translations
     const translations = {
       en: {
-        title: 'Why did you uninstall IFET? 😢',
-        subtitle: 'Your feedback helps us improve the extension',
-        reason1: "Didn't work as expected",
-        reason2: 'Too slow',
-        reason3: 'Found a better alternative',
-        reason4: 'Privacy concerns',
-        reason5: 'Other',
-        detailsLabel: 'Additional details (optional)',
-        detailsPlaceholder: 'Tell us more about your experience...',
-        btnSkip: 'Skip',
+        langLabel: 'Language',
+        extName: 'Instagram Follower Export Tool',
+        title: 'Why did you uninstall?',
+        detailsPlaceholder: 'Your feedback helps us improve the extension',
         btnSend: 'Send Feedback',
+        creatorText: 'Or message me on Telegram:',
         successTitle: 'Thank you! 🙏',
-        successText: "Your feedback has been received. We'll work on making IFET better!"
+        successText: "Your feedback has been received. We'll work on making Instagram Follower Export Tool better!"
       },
       ru: {
-        title: 'Почему вы удалили IFET? 😢',
-        subtitle: 'Ваш отзыв помогает нам улучшать расширение',
-        reason1: 'Работало не так, как ожидалось',
-        reason2: 'Слишком медленно',
-        reason3: 'Нашёл лучшую альтернативу',
-        reason4: 'Беспокойство о приватности',
-        reason5: 'Другое',
-        detailsLabel: 'Дополнительные детали (опционально)',
-        detailsPlaceholder: 'Расскажите подробнее о вашем опыте...',
-        btnSkip: 'Пропустить',
+        langLabel: 'Язык',
+        extName: 'Instagram Follower Export Tool',
+        title: 'Почему вы удалили?',
+        detailsPlaceholder: 'Ваш отзыв помогает нам улучшать расширение',
         btnSend: 'Отправить отзыв',
+        creatorText: 'Или напишите мне в Telegram:',
         successTitle: 'Спасибо! 🙏',
-        successText: 'Ваш отзыв получен. Мы будем работать над улучшением IFET!'
+        successText: 'Ваш отзыв получен. Мы будем работать над улучшением Instagram Follower Export Tool!'
       }
     };
     
@@ -104,6 +82,19 @@
     function initTranslations() {
       if (window.IFET && window.IFET.initTranslations) {
         window.IFET.initTranslations(translations);
+        const lang = window.IFET.currentLang || 'en';
+
+        // Setup language selector (EN/RU) -> updates ?lang=...
+        const select = document.getElementById('langSelect');
+        if (select) {
+          select.value = (lang === 'ru') ? 'ru' : 'en';
+          select.addEventListener('change', () => {
+            const next = (select.value === 'ru') ? 'ru' : 'en';
+            const url = new URL(window.location.href);
+            url.searchParams.set('lang', next);
+            window.location.href = url.toString();
+          });
+        }
       } else {
         setTimeout(initTranslations, 50);
       }
@@ -116,9 +107,8 @@
     }
     
     // Submit feedback
-    async function submitFeedback() {
-      const reasons = Array.from(document.querySelectorAll('input[name="reason"]:checked'))
-        .map(cb => cb.value);
+    async function submitFeedback(event) {
+      if (event && event.preventDefault) event.preventDefault();
       const details = document.getElementById('details').value;
       
       try {
@@ -131,7 +121,6 @@
           body: JSON.stringify({
             type: 'uninstall',
             lang: window.IFET.currentLang,
-            reasons: reasons,
             details: details,
             timestamp: new Date().toISOString()
           })
