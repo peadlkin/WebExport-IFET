@@ -1,6 +1,7 @@
 @font-face {
   font-family: 'Inter';
-  src: url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  /* Local variable font for fast first paint and to avoid blocked Google Fonts */
+  src: url('./fonts/InterVariable.woff2') format('woff2');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
