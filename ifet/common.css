@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Inter';
   /* Local variable font for fast first paint and to avoid blocked Google Fonts */
-  src: url('./fonts/InterVariable.woff2') format('woff2');
+  src: url('./fonts/InterVariable.woff2?v=20251221') format('woff2');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
