@@ -46,7 +46,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
+      min-height: 100vh;
     }
 
     /* Language selector */
@@ -491,6 +492,8 @@
         
         <button type="submit" class="btn-submit" data-i18n="btnSend">Send report</button>
       </form>
+
+      <div id="formError" style="display:none; margin-top:12px; font-size:13px; color:#b91c1c; background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.25); padding:10px 12px; border-radius:10px;"></div>
       
       <div class="telegram-footer">
         <p data-i18n="telegramText">Contact the creator on Telegram</p>
@@ -821,6 +824,9 @@
       const btn = document.querySelector('.btn-submit');
       btn.disabled = true;
       btn.textContent = '...';
+      const formError = document.getElementById('formError');
+      formError.style.display = 'none';
+      formError.textContent = '';
       
       try {
         const formData = new FormData();
@@ -835,21 +841,29 @@
           formData.append('attachment', file);
         }
         
-        await fetch('/api/ifet/feedback', {
+        const res = await fetch('/api/ifet/feedback', {
           method: 'POST',
           body: formData
         });
+        if (!res.ok) {
+          const text = await res.text().catch(() => '');
+          throw new Error(text || `Request failed (${res.status})`);
+        }
       } catch (e) {
         console.error('Failed to send:', e);
+        btn.disabled = false;
+        btn.textContent = translations[currentLang]?.btnSend || translations.en?.btnSend || 'Send report';
+        formError.textContent = (currentLang === 'ru')
+          ? 'Не удалось отправить отчёт. Попробуйте ещё раз позже.'
+          : 'Failed to send report. Please try again later.';
+        formError.style.display = 'block';
+        return;
       }
-      
-      // Always show success (better UX)
+
       document.getElementById('formPanel').style.display = 'none';
       document.getElementById('successPanel').style.display = 'block';
       
-      setTimeout(() => {
-        try { window.close(); } catch(e) {}
-      }, 3000);
+      // Do not auto-close the tab after submit
     }
 
     // Init
