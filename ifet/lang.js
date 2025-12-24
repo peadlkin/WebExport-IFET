@@ -91,10 +91,10 @@ function translatePage() {
 }
 
 // Export for use in pages
-window.IFET = {
+window.IFET_LANG = {
   currentLang,
   initTranslations,
   translatePage,
-  isLanguageSupported: currentLang === 'en' || currentLang === 'ru'
+  isLanguageSupported: SUPPORTED_LOCALES.includes(currentLang)
 };
 

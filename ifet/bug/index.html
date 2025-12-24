@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Report a Bug - IFET</title>
+  <title>Report a Bug - Instagram Follower Export Tool</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -347,6 +347,9 @@
       text-decoration: none;
       font-weight: 500;
       transition: opacity 0.2s;
+      direction: ltr;
+      unicode-bidi: isolate;
+      display: inline-block;
     }
 
     .telegram-footer a:hover {
@@ -427,8 +430,18 @@
         </svg>
       </button>
       <div class="lang-menu" id="langMenu">
+        <button class="lang-option" data-lang="ar">العربية</button>
+        <button class="lang-option" data-lang="bn">বাংলা</button>
+        <button class="lang-option" data-lang="de">Deutsch</button>
         <button class="lang-option" data-lang="en">English</button>
+        <button class="lang-option" data-lang="es">Español</button>
+        <button class="lang-option" data-lang="fr">Français</button>
+        <button class="lang-option" data-lang="hi">हिन्दी</button>
+        <button class="lang-option" data-lang="ja">日本語</button>
+        <button class="lang-option" data-lang="ko">한국어</button>
+        <button class="lang-option" data-lang="pt">Português</button>
         <button class="lang-option" data-lang="ru">Русский</button>
+        <button class="lang-option" data-lang="zh">中文</button>
       </div>
     </div>
   </div>
@@ -498,8 +511,60 @@
   </div>
 
   <script>
-    // Translations (EN + RU only)
+    const SUPPORTED = ['ar', 'bn', 'de', 'en', 'es', 'fr', 'hi', 'ja', 'ko', 'pt', 'ru', 'zh'];
+
     const translations = {
+      ar: {
+        langLabel: 'اللغة',
+        title: 'الإبلاغ عن خطأ',
+        subtitle: 'صف مشكلة في الإضافة',
+        emailLabel: 'البريد الإلكتروني',
+        emailHint: 'لتلقي تحديثات حول البلاغ',
+        messageLabel: 'الرسالة',
+        messageHint: 'يمكنك الكتابة بأي لغة',
+        attachmentLabel: 'مرفق',
+        attachmentOptional: '(اختياري)',
+        attachmentHint: 'يسرّع إصلاح الخطأ',
+        chooseFile: 'اختر ملفًا',
+        btnSend: 'إرسال التقرير',
+        telegramText: 'أو تواصل مع المطوّر على تيليجرام',
+        successTitle: 'شكرًا!',
+        successText: 'تم إرسال رسالتك. سنراجعها!'
+      },
+      bn: {
+        langLabel: 'ভাষা',
+        title: 'বাগ রিপোর্ট করুন',
+        subtitle: 'এক্সটেনশনের সমস্যাটি বর্ণনা করুন',
+        emailLabel: 'ইমেইল',
+        emailHint: 'রিপোর্টের আপডেটের জন্য',
+        messageLabel: 'বার্তা',
+        messageHint: 'যে কোনো ভাষায় লিখতে পারেন',
+        attachmentLabel: 'সংযুক্তি',
+        attachmentOptional: '(ঐচ্ছিক)',
+        attachmentHint: 'বাগ ঠিক করতে দ্রুত সাহায্য করে',
+        chooseFile: 'ফাইল নির্বাচন করুন',
+        btnSend: 'রিপোর্ট পাঠান',
+        telegramText: 'অথবা টেলিগ্রামে নির্মাতার সাথে যোগাযোগ করুন',
+        successTitle: 'ধন্যবাদ!',
+        successText: 'আপনার বার্তা পাঠানো হয়েছে। আমরা দেখে নেব!'
+      },
+      de: {
+        langLabel: 'Sprache',
+        title: 'Bug melden',
+        subtitle: 'Beschreibe ein Problem mit der Erweiterung',
+        emailLabel: 'E‑Mail',
+        emailHint: 'Für Updates zu deinem Bericht',
+        messageLabel: 'Nachricht',
+        messageHint: 'Du kannst in jeder Sprache schreiben',
+        attachmentLabel: 'Anhang',
+        attachmentOptional: '(optional)',
+        attachmentHint: 'Beschleunigt die Fehlerbehebung',
+        chooseFile: 'Datei auswählen',
+        btnSend: 'Bericht senden',
+        telegramText: 'Oder kontaktiere den Ersteller auf Telegram',
+        successTitle: 'Danke!',
+        successText: 'Deine Nachricht wurde gesendet. Wir schauen es uns an!'
+      },
       en: {
         langLabel: 'Language',
         title: 'Report a bug',
@@ -517,6 +582,108 @@
         successTitle: 'Thank you!',
         successText: "Your message has been sent. We'll look into it!"
       },
+      es: {
+        langLabel: 'Idioma',
+        title: 'Reportar un error',
+        subtitle: 'Describe un problema con la extensión',
+        emailLabel: 'Email',
+        emailHint: 'Para recibir actualizaciones de tu reporte',
+        messageLabel: 'Mensaje',
+        messageHint: 'Puedes escribir en cualquier idioma',
+        attachmentLabel: 'Adjunto',
+        attachmentOptional: '(opcional)',
+        attachmentHint: 'Acelera la corrección del error',
+        chooseFile: 'Elegir archivo',
+        btnSend: 'Enviar reporte',
+        telegramText: 'O contacta al creador en Telegram',
+        successTitle: '¡Gracias!',
+        successText: 'Tu mensaje fue enviado. Lo revisaremos.'
+      },
+      fr: {
+        langLabel: 'Langue',
+        title: 'Signaler un bug',
+        subtitle: 'Décris un problème avec l’extension',
+        emailLabel: 'Email',
+        emailHint: 'Pour recevoir des mises à jour sur ton signalement',
+        messageLabel: 'Message',
+        messageHint: 'Tu peux écrire dans n’importe quelle langue',
+        attachmentLabel: 'Pièce jointe',
+        attachmentOptional: '(optionnel)',
+        attachmentHint: 'Accélère la correction du bug',
+        chooseFile: 'Choisir un fichier',
+        btnSend: 'Envoyer le rapport',
+        telegramText: 'Ou contacte le créateur sur Telegram',
+        successTitle: 'Merci !',
+        successText: 'Ton message a été envoyé. Nous allons examiner ça.'
+      },
+      hi: {
+        langLabel: 'भाषा',
+        title: 'बग रिपोर्ट करें',
+        subtitle: 'एक्सटेंशन की समस्या बताएं',
+        emailLabel: 'ईमेल',
+        emailHint: 'रिपोर्ट अपडेट के लिए',
+        messageLabel: 'संदेश',
+        messageHint: 'आप किसी भी भाषा में लिख सकते हैं',
+        attachmentLabel: 'अटैचमेंट',
+        attachmentOptional: '(वैकल्पिक)',
+        attachmentHint: 'बग ठीक करने में मदद करता है',
+        chooseFile: 'फ़ाइल चुनें',
+        btnSend: 'रिपोर्ट भेजें',
+        telegramText: 'या Telegram पर निर्माता से संपर्क करें',
+        successTitle: 'धन्यवाद!',
+        successText: 'आपका संदेश भेज दिया गया है। हम इसे देखेंगे।'
+      },
+      ja: {
+        langLabel: '言語',
+        title: '不具合を報告',
+        subtitle: '拡張機能の問題を説明してください',
+        emailLabel: 'メール',
+        emailHint: '報告の更新を受け取るため',
+        messageLabel: 'メッセージ',
+        messageHint: 'どの言語でも書けます',
+        attachmentLabel: '添付ファイル',
+        attachmentOptional: '（任意）',
+        attachmentHint: '修正を早めます',
+        chooseFile: 'ファイルを選択',
+        btnSend: '報告を送信',
+        telegramText: 'または Telegram で作成者に連絡',
+        successTitle: 'ありがとうございます！',
+        successText: '送信しました。確認します。'
+      },
+      ko: {
+        langLabel: '언어',
+        title: '버그 신고',
+        subtitle: '확장 프로그램의 문제를 설명해 주세요',
+        emailLabel: '이메일',
+        emailHint: '신고 업데이트를 받기 위해',
+        messageLabel: '메시지',
+        messageHint: '어떤 언어로든 작성할 수 있어요',
+        attachmentLabel: '첨부파일',
+        attachmentOptional: '(선택 사항)',
+        attachmentHint: '버그 수정에 도움이 됩니다',
+        chooseFile: '파일 선택',
+        btnSend: '신고 보내기',
+        telegramText: '또는 Telegram에서 제작자에게 연락하세요',
+        successTitle: '감사합니다!',
+        successText: '메시지가 전송되었습니다. 확인하겠습니다.'
+      },
+      pt: {
+        langLabel: 'Idioma',
+        title: 'Reportar um bug',
+        subtitle: 'Descreva um problema com a extensão',
+        emailLabel: 'Email',
+        emailHint: 'Para atualizações do seu relatório',
+        messageLabel: 'Mensagem',
+        messageHint: 'Você pode escrever em qualquer idioma',
+        attachmentLabel: 'Anexo',
+        attachmentOptional: '(opcional)',
+        attachmentHint: 'Acelera a correção do bug',
+        chooseFile: 'Escolher arquivo',
+        btnSend: 'Enviar relatório',
+        telegramText: 'Ou fale com o criador no Telegram',
+        successTitle: 'Obrigado!',
+        successText: 'Sua mensagem foi enviada. Vamos analisar.'
+      },
       ru: {
         langLabel: 'Язык',
         title: 'Сообщить об ошибке',
@@ -533,6 +700,23 @@
         telegramText: 'Или свяжитесь с создателем в Telegram',
         successTitle: 'Спасибо!',
         successText: 'Ваше сообщение отправлено. Мы обязательно разберёмся!'
+      },
+      zh: {
+        langLabel: '语言',
+        title: '报告问题',
+        subtitle: '描述扩展程序的问题',
+        emailLabel: '邮箱',
+        emailHint: '用于接收报告更新',
+        messageLabel: '消息',
+        messageHint: '你可以使用任何语言',
+        attachmentLabel: '附件',
+        attachmentOptional: '（可选）',
+        attachmentHint: '有助于更快修复问题',
+        chooseFile: '选择文件',
+        btnSend: '发送报告',
+        telegramText: '或在 Telegram 联系作者',
+        successTitle: '谢谢！',
+        successText: '你的消息已发送。我们会处理。'
       }
     };
 
@@ -540,10 +724,10 @@
     function detectLang() {
       const params = new URLSearchParams(window.location.search);
       const langParam = (params.get('lang') || '').toLowerCase().split('-')[0];
-      if (['en', 'ru'].includes(langParam)) return langParam;
+      if (SUPPORTED.includes(langParam)) return langParam;
       
       const browserLang = (navigator.language || '').toLowerCase().split('-')[0];
-      if (['en', 'ru'].includes(browserLang)) return browserLang;
+      if (SUPPORTED.includes(browserLang)) return browserLang;
       
       return 'en';
     }
@@ -552,21 +736,22 @@
 
     // Apply translations
     function applyTranslations() {
-      const t = translations[currentLang];
+      const t = translations[currentLang] || translations.en;
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (t[key]) {
-          el.textContent = t[key];
-        }
+        const text = (t && t[key]) || translations.en?.[key] || '';
+        if (text) el.textContent = text;
       });
 
       // Translate placeholders (only where explicitly provided)
       document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
         const key = el.getAttribute('data-i18n-placeholder');
-        if (t[key]) {
-          el.setAttribute('placeholder', t[key]);
-        }
+        const text = (t && t[key]) || translations.en?.[key] || '';
+        if (text) el.setAttribute('placeholder', text);
       });
+
+      document.documentElement.lang = currentLang;
+      document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
       
       // Update lang button text
       document.getElementById('currentLang').textContent = currentLang.toUpperCase();
