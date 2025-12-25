@@ -15,8 +15,8 @@
     }
 
     :root {
-      --accent: #FF4697;
-      --accent-hover: #E63E87;
+      --accent: #7C4DFF;
+      --accent-hover: #6A3DF0;
       --text-primary: #1a1a2e;
       --text-secondary: #6b7280;
       --text-muted: #9ca3af;
@@ -30,9 +30,9 @@
       width: 100%;
       min-height: 100vh;
       background: linear-gradient(135deg,
-        rgba(255, 70, 151, 0.08) 0%,
-        rgba(255, 91, 165, 0.06) 50%,
-        rgba(255, 140, 190, 0.04) 100%
+        rgba(124, 77, 255, 0.08) 0%,
+        rgba(124, 77, 255, 0.05) 50%,
+        rgba(124, 77, 255, 0.03) 100%
       );
     }
 
@@ -229,7 +229,7 @@
     .form-group textarea:focus {
       outline: none;
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(255, 70, 151, 0.1);
+      box-shadow: 0 0 0 3px rgba(124, 77, 255, 0.1);
     }
 
     /* Button */
@@ -251,7 +251,7 @@
     .btn-submit:hover:not(:disabled) {
       background: var(--accent-hover);
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(255, 70, 151, 0.3);
+      box-shadow: 0 4px 12px rgba(124, 77, 255, 0.3);
     }
 
     .btn-submit:active:not(:disabled) {
@@ -307,7 +307,7 @@
     .success-icon {
       width: 64px;
       height: 64px;
-      background: linear-gradient(135deg, var(--accent), #FF5BA5);
+      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
       border-radius: 50%;
       display: flex;
       align-items: center;

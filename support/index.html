@@ -11,8 +11,8 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --accent: #FF4697;
-      --accent-hover: #E63E87;
+      --accent: #7C4DFF;
+      --accent-hover: #6A3DF0;
       --text-primary: #1a1a2e;
       --text-secondary: #6b7280;
       --text-muted: #9ca3af;
@@ -26,9 +26,9 @@
       width: 100%;
       min-height: 100vh;
       background: linear-gradient(135deg,
-        rgba(255, 70, 151, 0.08) 0%,
-        rgba(255, 91, 165, 0.06) 50%,
-        rgba(255, 140, 190, 0.04) 100%
+        rgba(124, 77, 255, 0.08) 0%,
+        rgba(124, 77, 255, 0.05) 50%,
+        rgba(124, 77, 255, 0.03) 100%
       );
     }
 
@@ -165,7 +165,7 @@
     .form-group textarea:focus {
       outline: none;
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(255, 70, 151, 0.1);
+      box-shadow: 0 0 0 3px rgba(124, 77, 255, 0.1);
     }
 
     .form-group textarea { min-height: 120px; resize: vertical; }
@@ -198,8 +198,8 @@
       transition: all 0.2s;
       background: #fafafa;
     }
-    .file-upload-area:hover { border-color: var(--accent); background: rgba(255, 70, 151, 0.02); }
-    .file-upload-area.has-file { border-style: solid; border-color: var(--accent); background: rgba(255, 70, 151, 0.04); }
+    .file-upload-area:hover { border-color: var(--accent); background: rgba(124, 77, 255, 0.02); }
+    .file-upload-area.has-file { border-style: solid; border-color: var(--accent); background: rgba(124, 77, 255, 0.04); }
     .file-upload-area svg { width: 20px; height: 20px; color: var(--text-muted); flex-shrink: 0; }
     .file-upload-area.has-file svg { color: var(--accent); }
     .file-upload-text { font-size: 14px; color: var(--text-secondary); line-height: 1; }
@@ -224,7 +224,7 @@
     .btn-submit:hover:not(:disabled) {
       background: var(--accent-hover);
       transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(255, 70, 151, 0.3);
+      box-shadow: 0 4px 12px rgba(124, 77, 255, 0.3);
     }
     .btn-submit:active:not(:disabled) { transform: translateY(0); }
     .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
@@ -257,7 +257,7 @@
     .success-icon {
       width: 64px;
       height: 64px;
-      background: linear-gradient(135deg, var(--accent), #FF5BA5);
+      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
       border-radius: 50%;
       display: flex;
       align-items: center;
