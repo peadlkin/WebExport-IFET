@@ -1,0 +1,21 @@
+# Локальные файлы контекста (не коммитятся)
+*.local.md
+CLAUDE.local.md
+context/local-notes.md
+context/personal/
+
+# Временные файлы
+_tmp_*
+*.tmp
+*.log
+
+# IDE
+.vscode/
+.idea/
+
+# Node modules (если используется)
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
