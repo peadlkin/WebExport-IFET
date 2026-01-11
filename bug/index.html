@@ -59,12 +59,12 @@
       align-items: center;
       gap: 8px;
       font-size: 13px;
-      color: var(--text-secondary);
+      color: #262626;
       z-index: 100;
     }
 
-    .lang-selector span {
-      color: var(--text-muted);
+    .lang-selector > span {
+      color: #262626;
     }
 
     .lang-dropdown {
@@ -75,9 +75,9 @@
       display: flex;
       align-items: center;
       gap: 4px;
-      padding: 6px 12px;
+      padding: 5px 12px;
       background: transparent;
-      border: 1px solid #dbdbdb;
+      border: 1px solid #262626;
       border-radius: 6px;
       font-size: 13px;
       font-weight: 500;
@@ -108,7 +108,7 @@
       right: 0;
       width: 140px;
       background: #fff;
-      border: 1px solid #dbdbdb;
+      border: 1px solid #262626;
       border-radius: 6px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       overflow: hidden;
@@ -129,7 +129,7 @@
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      padding: 8px 12px;
+      padding: 6px 12px;
       border: none;
       background: transparent;
       font-size: 13px;
@@ -453,6 +453,7 @@
         <button class="lang-option" data-lang="en"><span>English</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
         <button class="lang-option" data-lang="es"><span>Español</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
         <button class="lang-option" data-lang="fr"><span>Français</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
+        <button class="lang-option" data-lang="it"><span>Italiano</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
         <button class="lang-option" data-lang="hi"><span>हिन्दी</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
         <button class="lang-option" data-lang="ja"><span>日本語</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
         <button class="lang-option" data-lang="ko"><span>한국어</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
@@ -530,7 +531,7 @@
   </div>
 
   <script>
-    const SUPPORTED = ['ar', 'bn', 'de', 'en', 'es', 'fr', 'hi', 'ja', 'ko', 'pt', 'ru', 'zh'];
+    const SUPPORTED = ['ar', 'bn', 'de', 'en', 'es', 'fr', 'hi', 'it', 'ja', 'ko', 'pt', 'ru', 'zh'];
 
     const translations = {
       ar: {
@@ -651,6 +652,23 @@
         telegramText: 'या Telegram पर निर्माता से संपर्क करें',
         successTitle: 'धन्यवाद!',
         successText: 'आपका संदेश भेज दिया गया है। हम इसे देखेंगे।'
+      },
+      it: {
+        langLabel: 'Lingua',
+        title: 'Segnala un bug',
+        subtitle: 'Descrivi il problema con l\'estensione',
+        emailLabel: 'Email',
+        emailHint: 'Per aggiornamenti sulla segnalazione',
+        messageLabel: 'Messaggio',
+        messageHint: 'Puoi scrivere in qualsiasi lingua',
+        attachmentLabel: 'Allegato',
+        attachmentOptional: '(opzionale)',
+        attachmentHint: 'Aiuta a risolvere il bug più velocemente',
+        chooseFile: 'Scegli file',
+        btnSend: 'Invia segnalazione',
+        telegramText: 'Oppure contatta il creatore su Telegram',
+        successTitle: 'Grazie!',
+        successText: 'Il tuo messaggio è stato inviato. Lo esamineremo.'
       },
       ja: {
         langLabel: '言語',
