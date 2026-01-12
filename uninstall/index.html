@@ -4,9 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Feedback - Instagram Follower Export Tool</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -15,31 +12,48 @@
     }
 
     :root {
-      --accent: #7C4DFF;
-      --accent-hover: #6A3DF0;
-      --text-primary: #1a1a2e;
-      --text-secondary: #6b7280;
-      --text-muted: #9ca3af;
-      --border-color: #e5e7eb;
+      /* Primary - из tokens.ts расширения */
+      --accent: #6A4CFF;
+      --accent-hover: #5438e0;
+      
+      /* Text - из tokens.ts расширения */
+      --text-primary: #262626;
+      --text-secondary: #8e8e8e;
+      --text-muted: #666666;
+      
+      /* Borders - из tokens.ts расширения */
+      --border-color: #dbdbdb;
+      --border-light: #efefef;
+      
+      /* Backgrounds */
       --bg-panel: #ffffff;
-      --radius: 16px;
-      --radius-sm: 8px;
+      --bg-secondary: #fafafa;
+      --bg-hover: #f5f5f5;
+      
+      /* Border radius - из tokens.ts расширения */
+      --radius-sm: 4px;
+      --radius-md: 6px;
+      --radius-lg: 8px;
+      
+      /* Shadows - из tokens.ts расширения */
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     html {
       width: 100%;
       min-height: 100vh;
       background: linear-gradient(135deg,
-        rgba(124, 77, 255, 0.08) 0%,
-        rgba(124, 77, 255, 0.05) 50%,
-        rgba(124, 77, 255, 0.03) 100%
+        rgba(106, 76, 255, 0.08) 0%,
+        rgba(106, 76, 255, 0.05) 50%,
+        rgba(106, 76, 255, 0.03) 100%
       );
     }
 
     body {
       width: 100%;
       min-height: 100vh;
-      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       background: transparent;
       color: var(--text-primary);
       padding: 20px;
@@ -179,14 +193,14 @@
     /* Panel */
     .panel {
       background: var(--bg-panel);
-      border-radius: var(--radius);
+      border-radius: var(--radius-lg);
       padding: 48px;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+      box-shadow: var(--shadow-md);
     }
 
     /* Title */
     .page-title {
-      font-size: 28px;
+      font-size: 24px;
       font-weight: 700;
       color: var(--text-primary);
       margin-bottom: 8px;
@@ -195,9 +209,9 @@
     }
 
     .page-subtitle {
-      font-size: 15px;
+      font-size: 14px;
       color: var(--text-secondary);
-      margin-bottom: 32px;
+      margin-bottom: 28px;
       text-align: center;
       line-height: 1.5;
     }
@@ -209,7 +223,7 @@
 
     .form-group label {
       display: block;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
       color: var(--text-primary);
       margin-bottom: 8px;
@@ -226,13 +240,13 @@
 
     .form-group textarea {
       width: 100%;
-      padding: 14px 16px;
+      padding: 10px 12px;
       border: 1px solid var(--border-color);
       border-radius: var(--radius-sm);
-      font-size: 15px;
+      font-size: 13px;
       font-family: inherit;
       color: var(--text-primary);
-      transition: border-color 0.2s, box-shadow 0.2s;
+      transition: border-color 0.15s;
       background: #fff;
       min-height: 140px;
       resize: vertical;
@@ -245,19 +259,18 @@
     .form-group textarea:focus {
       outline: none;
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(124, 77, 255, 0.1);
     }
 
     /* Button */
     .btn-submit {
       width: 100%;
-      padding: 16px 24px;
+      padding: 12px 20px;
       background: var(--accent);
       color: white;
       border: none;
-      border-radius: var(--radius-sm);
-      font-size: 16px;
-      font-weight: 600;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 500;
       cursor: pointer;
       transition: all 0.2s;
       font-family: inherit;
@@ -266,8 +279,6 @@
 
     .btn-submit:hover:not(:disabled) {
       background: var(--accent-hover);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(124, 77, 255, 0.3);
     }
 
     .btn-submit:active:not(:disabled) {
@@ -275,7 +286,7 @@
     }
 
     .btn-submit:disabled {
-      opacity: 0.6;
+      opacity: 0.5;
       cursor: not-allowed;
     }
 
@@ -338,14 +349,14 @@
     }
 
     .success-title {
-      font-size: 24px;
-      font-weight: 700;
+      font-size: 18px;
+      font-weight: 600;
       color: var(--text-primary);
       margin-bottom: 8px;
     }
 
     .success-text {
-      font-size: 15px;
+      font-size: 14px;
       color: var(--text-secondary);
       line-height: 1.5;
     }
