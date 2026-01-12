@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact support - Instagram Follower Export Tool</title>
+  <link rel="icon" type="image/png" sizes="16x16" href="../icons/icon16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/icon32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="../icons/icon48.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../icons/icon128.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -12,9 +16,9 @@
 
     :root {
       /* Primary - из tokens.ts расширения */
-      --accent: #8c52ff;
-      --accent-hover: #7a42e6;
-      --accent-light: #a670ff;
+      --accent: #783bf0;
+      --accent-hover: #6630d8;
+      --accent-light: #9462f5;
       
       /* Text - из tokens.ts расширения */
       --text-primary: #262626;
@@ -44,9 +48,9 @@
       width: 100%;
       min-height: 100vh;
       background: linear-gradient(135deg,
-        rgba(140, 82, 255, 0.08) 0%,
-        rgba(140, 82, 255, 0.05) 50%,
-        rgba(140, 82, 255, 0.03) 100%
+        rgba(120, 59, 240, 0.08) 0%,
+        rgba(120, 59, 240, 0.05) 50%,
+        rgba(120, 59, 240, 0.03) 100%
       );
     }
 
@@ -132,7 +136,7 @@
       transition: background 0.15s;
     }
     .lang-option:hover { background: #fafafa; }
-    .lang-option.active { background: #f5f0ff; color: var(--accent); }
+    .lang-option.active { background: #f2edfe; color: var(--accent); }
     .lang-check { width: 16px; height: 16px; color: var(--accent); display: none; flex-shrink: 0; }
     .lang-option.active .lang-check { display: block; }
 
@@ -222,8 +226,8 @@
       transition: all 0.15s;
       background: var(--bg-secondary);
     }
-    .file-upload-area:hover { border-color: var(--accent); background: rgba(140, 82, 255, 0.04); }
-    .file-upload-area.has-file { border-style: solid; border-color: var(--accent); background: rgba(140, 82, 255, 0.06); }
+    .file-upload-area:hover { border-color: var(--accent); background: rgba(120, 59, 240, 0.04); }
+    .file-upload-area.has-file { border-style: solid; border-color: var(--accent); background: rgba(120, 59, 240, 0.06); }
     .file-upload-area svg { width: 18px; height: 18px; color: var(--text-secondary); flex-shrink: 0; }
     .file-upload-area.has-file svg { color: var(--accent); }
     .file-upload-text { font-size: 13px; color: var(--text-secondary); line-height: 1; }

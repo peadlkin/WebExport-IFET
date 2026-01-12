@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome - Instagram Follower Export Tool</title>
+  <link rel="icon" type="image/png" sizes="16x16" href="../icons/icon16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../icons/icon32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="../icons/icon48.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="../icons/icon128.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -16,9 +20,9 @@
 
     :root {
       /* Primary - из tokens.ts расширения */
-      --accent: #8c52ff;
-      --accent-hover: #7a42e6;
-      --accent-light: #a670ff;
+      --accent: #783bf0;
+      --accent-hover: #6630d8;
+      --accent-light: #9462f5;
       
       /* Text - из tokens.ts расширения */
       --text-primary: #262626;
@@ -48,9 +52,9 @@
       width: 100%;
       min-height: 100vh;
       background: linear-gradient(135deg,
-        rgba(140, 82, 255, 0.08) 0%,
-        rgba(140, 82, 255, 0.05) 50%,
-        rgba(140, 82, 255, 0.03) 100%
+        rgba(120, 59, 240, 0.08) 0%,
+        rgba(120, 59, 240, 0.05) 50%,
+        rgba(120, 59, 240, 0.03) 100%
       );
     }
 
@@ -164,7 +168,7 @@
     }
 
     .lang-option.active {
-      background: #f5f0ff;
+      background: #f2edfe;
       color: var(--accent);
     }
 
@@ -297,7 +301,7 @@
       border-radius: var(--radius-md);
       font-size: 13px;
       font-weight: 500;
-      box-shadow: 0 4px 16px rgba(140, 82, 255, 0.4);
+      box-shadow: 0 4px 16px rgba(120, 59, 240, 0.4);
       opacity: 0;
       visibility: hidden;
       transform: translateY(-10px);
