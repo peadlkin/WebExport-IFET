@@ -19,7 +19,9 @@
   --text-secondary: #6c757d;
   --text-muted: #adb5bd;
   --border-color: #e9ecef;
-  --accent-blue: #7C4DFF;
+  --accent-blue: #8c52ff;
+  --accent-blue-hover: #7a42e6;
+  --accent-blue-light: #a670ff;
   --accent-green: #28a745;
   --accent-red: #dc3545;
   --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
@@ -113,7 +115,7 @@ body {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--accent-blue);
-  box-shadow: 0 0 0 3px rgba(124, 77, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(140, 82, 255, 0.1);
 }
 
 .form-group textarea {
@@ -201,7 +203,7 @@ body {
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: #6A3DF0;
+  background: var(--accent-blue-hover);
 }
 
 .btn-secondary {
