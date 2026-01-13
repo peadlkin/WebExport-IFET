@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagram Follower Export Tool - Export followers to CSV, XLSX, JSON</title>
+  <meta name="description" content="Export Instagram followers and following lists to CSV, XLSX, and JSON formats. Free Chrome extension for marketers, researchers, and social media managers.">
+  <meta name="keywords" content="instagram export, instagram followers, export followers csv, instagram following list, chrome extension">
+  <meta property="og:title" content="Instagram Follower Export Tool">
+  <meta property="og:description" content="Export Instagram followers and following lists to CSV, XLSX, and JSON formats.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ifet.webexport.pro">
+  <link rel="icon" type="image/png" sizes="16x16" href="icons/icon16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/icon32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="icons/icon48.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="icons/icon128.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --accent: #783bf0;
+      --accent-hover: #6630d8;
+      --accent-light: rgba(120, 59, 240, 0.12);
+      --accent-glow: rgba(120, 59, 240, 0.35);
+      --text-primary: #0f0f1a;
+      --text-secondary: #5c5c6f;
+      --text-muted: #8e8e9f;
+      --bg-dark: #0a0a12;
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --gradient-mesh: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(120, 59, 240, 0.25), transparent),
+                       radial-gradient(ellipse 60% 40% at 100% 0%, rgba(168, 85, 247, 0.15), transparent),
+                       radial-gradient(ellipse 50% 30% at 0% 100%, rgba(120, 59, 240, 0.1), transparent);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-dark);
+      color: #e8e8f0;
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Animated background */
+    .bg-mesh {
+      position: fixed;
+      inset: 0;
+      background: var(--gradient-mesh);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Floating orbs */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+      pointer-events: none;
+      z-index: 0;
+      animation: float 20s ease-in-out infinite;
+    }
+
+    .orb-1 {
+      width: 400px;
+      height: 400px;
+      background: var(--accent);
+      top: -100px;
+      right: -100px;
+      animation-delay: 0s;
+    }
+
+    .orb-2 {
+      width: 300px;
+      height: 300px;
+      background: #a855f7;
+      bottom: -50px;
+      left: -50px;
+      animation-delay: -7s;
+    }
+
+    .orb-3 {
+      width: 200px;
+      height: 200px;
+      background: #ec4899;
+      top: 50%;
+      left: 50%;
+      animation-delay: -14s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(30px, -30px) scale(1.05); }
+      50% { transform: translate(-20px, 20px) scale(0.95); }
+      75% { transform: translate(20px, 30px) scale(1.02); }
+    }
+
+    /* Content wrapper */
+    .content {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    header {
+      padding: 24px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      object-fit: contain;
+    }
+
+    .logo-text {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .header-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .header-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .header-links a:hover {
+      color: #fff;
+    }
+
+    /* Hero section */
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 24px 100px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* Badge */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-light);
+      border: 1px solid rgba(120, 59, 240, 0.25);
+      padding: 8px 18px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #c4a8ff;
+      margin-bottom: 32px;
+      animation: fadeInUp 0.6s ease-out;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.1); }
+    }
+
+    /* Title */
+    h1 {
+      font-size: clamp(48px, 8vw, 80px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 28px;
+      background: linear-gradient(135deg, #fff 0%, #c4a8ff 50%, #fff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: fadeInUp 0.6s ease-out 0.1s both;
+    }
+
+    .highlight {
+      background: linear-gradient(135deg, var(--accent) 0%, #a855f7 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    /* Subtitle */
+    .subtitle {
+      font-size: clamp(18px, 2.5vw, 22px);
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-bottom: 48px;
+      line-height: 1.6;
+      font-weight: 400;
+      animation: fadeInUp 0.6s ease-out 0.2s both;
+    }
+
+    /* CTA section */
+    .cta-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      animation: fadeInUp 0.6s ease-out 0.3s both;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(135deg, var(--accent) 0%, #9333ea 100%);
+      color: #fff;
+      padding: 18px 36px;
+      border-radius: 14px;
+      font-size: 17px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 24px var(--accent-glow),
+                  0 0 0 1px rgba(255,255,255,0.1) inset;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 40px var(--accent-glow),
+                  0 0 0 1px rgba(255,255,255,0.15) inset;
+    }
+
+    .cta-button:hover::before {
+      opacity: 1;
+    }
+
+    .cta-button svg {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+
+    .cta-hint {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* Features */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 64px;
+      animation: fadeInUp 0.6s ease-out 0.4s both;
+    }
+
+    .feature-tag {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #c8c8d8;
+      backdrop-filter: blur(8px);
+    }
+
+    .feature-tag svg {
+      width: 18px;
+      height: 18px;
+      color: var(--accent);
+    }
+
+    /* Formats showcase */
+    .formats {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 48px;
+      animation: fadeInUp 0.6s ease-out 0.5s both;
+    }
+
+    .format-badge {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      backdrop-filter: blur(8px);
+    }
+
+    .format-csv { color: #22c55e; border-color: rgba(34, 197, 94, 0.3); }
+    .format-xlsx { color: #3b82f6; border-color: rgba(59, 130, 246, 0.3); }
+    .format-json { color: #f59e0b; border-color: rgba(245, 158, 11, 0.3); }
+
+    /* Footer */
+    footer {
+      padding: 32px 40px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    footer a:hover {
+      color: #fff;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        padding: 20px 24px;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .header-links {
+        gap: 24px;
+      }
+
+      .hero {
+        padding: 40px 20px 80px;
+      }
+
+      .subtitle {
+        font-size: 17px;
+      }
+
+      .cta-button {
+        padding: 16px 28px;
+        font-size: 16px;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .features {
+        gap: 12px;
+      }
+
+      .feature-tag {
+        padding: 10px 16px;
+        font-size: 13px;
+      }
+
+      footer {
+        padding: 24px 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo-text {
+        font-size: 15px;
+      }
+
+      .header-links {
+        gap: 16px;
+      }
+
+      .header-links a {
+        font-size: 14px;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      .feature-tag {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .formats {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Background effects -->
+  <div class="bg-mesh"></div>
+  <div class="bg-grid"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="content">
+    <!-- Header -->
+    <header>
+      <a href="/" class="logo">
+        <img src="icons/icon128.png" alt="IFET" class="logo-icon">
+        <span class="logo-text">Instagram Follower Export Tool</span>
+      </a>
+      <nav class="header-links">
+        <a href="/support/">Support</a>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <main class="hero">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Chrome Extension
+      </div>
+
+      <h1>Export Instagram<br>Followers & Following</h1>
+
+      <p class="subtitle">
+        Easily export any Instagram account's followers and following lists 
+        to CSV, XLSX, or JSON. Perfect for marketers, researchers, and social media managers.
+      </p>
+
+      <div class="cta-group">
+        <a href="https://chromewebstore.google.com/detail/instagram-follower-export/lmfnogamhfoaahedlihpkafhfeblmnip" 
+           class="cta-button" 
+           target="_blank" 
+           rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+            <path d="M21.17 8H12" stroke="currentColor" stroke-width="2"/>
+            <path d="M3.95 6.06L8.54 14" stroke="currentColor" stroke-width="2"/>
+            <path d="M10.88 21.94L15.46 14" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          Add to Chrome — Free
+        </a>
+        <span class="cta-hint">Works with Chrome, Edge, Brave & Opera</span>
+      </div>
+
+      <div class="features">
+        <div class="feature-tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          Export full profile data
+        </div>
+        <div class="feature-tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+          Fast & reliable
+        </div>
+        <div class="feature-tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          Privacy-first
+        </div>
+      </div>
+
+      <div class="formats">
+        <span class="format-badge format-csv">CSV</span>
+        <span class="format-badge format-xlsx">XLSX</span>
+        <span class="format-badge format-json">JSON</span>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2025 Instagram Follower Export Tool · <a href="/support/">Support</a></p>
+    </footer>
+  </div>
+</body>
+</html>
