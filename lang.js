@@ -1,5 +1,5 @@
 // Language detection and translation system
-const SUPPORTED_LOCALES = ['ar', 'bn', 'de', 'en', 'es', 'fr', 'hi', 'it', 'ja', 'ko', 'pt', 'ru', 'zh'];
+const SUPPORTED_LOCALES = ['ar', 'bn', 'de', 'en', 'es', 'fr', 'hi', 'id', 'it', 'ja', 'ko', 'nl', 'pl', 'pt', 'ru', 'th', 'tr', 'uk', 'zh'];
 const DEFAULT_LOCALE = 'en';
 
 // Get language from URL parameter or default to English
