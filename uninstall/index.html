@@ -129,12 +129,13 @@
       position: absolute;
       top: calc(100% + 4px);
       right: 0;
-      width: 140px;
+      width: 160px;
+      max-height: 320px;
+      overflow-y: auto;
       background: #fff;
       border: 1px solid var(--border-color);
       border-radius: 6px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      overflow: hidden;
       opacity: 0;
       visibility: hidden;
       transform: translateY(-8px);
@@ -413,19 +414,25 @@
         </svg>
       </button>
       <div class="lang-menu" id="langMenu">
-        <button class="lang-option" data-lang="ar"><span>العربية</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
-        <button class="lang-option" data-lang="bn"><span>বাংলা</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
+        <button class="lang-option" data-lang="id"><span>Bahasa Indonesia</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
         <button class="lang-option" data-lang="de"><span>Deutsch</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
         <button class="lang-option" data-lang="en"><span>English</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
         <button class="lang-option" data-lang="es"><span>Español</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
         <button class="lang-option" data-lang="fr"><span>Français</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
         <button class="lang-option" data-lang="it"><span>Italiano</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
-        <button class="lang-option" data-lang="hi"><span>हिन्दी</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
-        <button class="lang-option" data-lang="ja"><span>日本語</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
-        <button class="lang-option" data-lang="ko"><span>한국어</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
+        <button class="lang-option" data-lang="nl"><span>Nederlands</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
+        <button class="lang-option" data-lang="pl"><span>Polski</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
         <button class="lang-option" data-lang="pt"><span>Português</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
+        <button class="lang-option" data-lang="tr"><span>Türkçe</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
         <button class="lang-option" data-lang="ru"><span>Русский</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
+        <button class="lang-option" data-lang="uk"><span>Українська</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
+        <button class="lang-option" data-lang="ar"><span>العربية</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
+        <button class="lang-option" data-lang="hi"><span>हिन्दी</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
+        <button class="lang-option" data-lang="bn"><span>বাংলা</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
+        <button class="lang-option" data-lang="th"><span>ไทย</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
+        <button class="lang-option" data-lang="ja"><span>日本語</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
         <button class="lang-option" data-lang="zh"><span>中文</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
+        <button class="lang-option" data-lang="ko"><span>한국어</span><svg class="lang-check" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg></button>
       </div>
     </div>
   </div>
