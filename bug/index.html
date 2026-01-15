@@ -559,7 +559,7 @@
   </div>
 
   <script>
-    const SUPPORTED = ['ar', 'bn', 'de', 'en', 'es', 'fr', 'hi', 'it', 'ja', 'ko', 'pt', 'ru', 'zh'];
+    const SUPPORTED = ['ar', 'bn', 'de', 'en', 'es', 'fr', 'hi', 'id', 'it', 'ja', 'ko', 'nl', 'pl', 'pt', 'ru', 'th', 'tr', 'uk', 'zh'];
 
     const translations = {
       ar: {
@@ -681,6 +681,23 @@
         successTitle: 'धन्यवाद!',
         successText: 'आपका संदेश भेज दिया गया है। हम इसे देखेंगे।'
       },
+      id: {
+        langLabel: 'Bahasa',
+        title: 'Laporkan bug',
+        subtitle: 'Jelaskan masalah dengan ekstensi',
+        emailLabel: 'Email',
+        emailHint: 'Untuk pembaruan laporan',
+        messageLabel: 'Pesan',
+        messageHint: 'Anda bisa menulis dalam bahasa apa saja',
+        attachmentLabel: 'Lampiran',
+        attachmentOptional: '(opsional)',
+        attachmentHint: 'Mempercepat perbaikan bug',
+        chooseFile: 'Pilih file',
+        btnSend: 'Kirim laporan',
+        telegramText: 'Atau hubungi pembuat di Telegram',
+        successTitle: 'Terima kasih!',
+        successText: 'Pesan Anda telah dikirim. Kami akan memeriksanya!'
+      },
       it: {
         langLabel: 'Lingua',
         title: 'Segnala un bug',
@@ -732,6 +749,40 @@
         successTitle: '감사합니다!',
         successText: '메시지가 전송되었습니다. 확인하겠습니다.'
       },
+      nl: {
+        langLabel: 'Taal',
+        title: 'Bug melden',
+        subtitle: 'Beschrijf het probleem met de extensie',
+        emailLabel: 'E-mail',
+        emailHint: 'Voor updates over je melding',
+        messageLabel: 'Bericht',
+        messageHint: 'Je kunt in elke taal schrijven',
+        attachmentLabel: 'Bijlage',
+        attachmentOptional: '(optioneel)',
+        attachmentHint: 'Versnelt het oplossen van de bug',
+        chooseFile: 'Bestand kiezen',
+        btnSend: 'Melding verzenden',
+        telegramText: 'Of neem contact op met de maker via Telegram',
+        successTitle: 'Bedankt!',
+        successText: 'Je bericht is verzonden. We bekijken het!'
+      },
+      pl: {
+        langLabel: 'Język',
+        title: 'Zgłoś błąd',
+        subtitle: 'Opisz problem z rozszerzeniem',
+        emailLabel: 'Email',
+        emailHint: 'Dla aktualizacji o zgłoszeniu',
+        messageLabel: 'Wiadomość',
+        messageHint: 'Możesz pisać w dowolnym języku',
+        attachmentLabel: 'Załącznik',
+        attachmentOptional: '(opcjonalnie)',
+        attachmentHint: 'Przyspiesza naprawę błędu',
+        chooseFile: 'Wybierz plik',
+        btnSend: 'Wyślij zgłoszenie',
+        telegramText: 'Lub skontaktuj się z twórcą na Telegramie',
+        successTitle: 'Dziękujemy!',
+        successText: 'Twoja wiadomość została wysłana. Sprawdzimy to!'
+      },
       pt: {
         langLabel: 'Idioma',
         title: 'Reportar um bug',
@@ -765,6 +816,57 @@
         telegramText: 'Или свяжитесь с создателем в Telegram',
         successTitle: 'Спасибо!',
         successText: 'Ваше сообщение отправлено. Мы обязательно разберёмся!'
+      },
+      th: {
+        langLabel: 'ภาษา',
+        title: 'รายงานบั๊ก',
+        subtitle: 'อธิบายปัญหาของส่วนขยาย',
+        emailLabel: 'อีเมล',
+        emailHint: 'สำหรับการอัปเดตรายงาน',
+        messageLabel: 'ข้อความ',
+        messageHint: 'คุณสามารถเขียนเป็นภาษาใดก็ได้',
+        attachmentLabel: 'ไฟล์แนบ',
+        attachmentOptional: '(ไม่จำเป็น)',
+        attachmentHint: 'ช่วยให้แก้บั๊กได้เร็วขึ้น',
+        chooseFile: 'เลือกไฟล์',
+        btnSend: 'ส่งรายงาน',
+        telegramText: 'หรือติดต่อผู้สร้างทาง Telegram',
+        successTitle: 'ขอบคุณ!',
+        successText: 'ข้อความของคุณถูกส่งแล้ว เราจะตรวจสอบ!'
+      },
+      tr: {
+        langLabel: 'Dil',
+        title: 'Hata bildir',
+        subtitle: 'Uzantıdaki sorunu açıklayın',
+        emailLabel: 'E-posta',
+        emailHint: 'Raporunuzla ilgili güncellemeler için',
+        messageLabel: 'Mesaj',
+        messageHint: 'Herhangi bir dilde yazabilirsiniz',
+        attachmentLabel: 'Ek',
+        attachmentOptional: '(isteğe bağlı)',
+        attachmentHint: 'Hatanın düzeltilmesini hızlandırır',
+        chooseFile: 'Dosya seç',
+        btnSend: 'Rapor gönder',
+        telegramText: 'Veya Telegram\'da yaratıcıyla iletişime geçin',
+        successTitle: 'Teşekkürler!',
+        successText: 'Mesajınız gönderildi. İnceleyeceğiz!'
+      },
+      uk: {
+        langLabel: 'Мова',
+        title: 'Повідомити про помилку',
+        subtitle: 'Опишіть проблему з розширенням',
+        emailLabel: 'Email',
+        emailHint: 'Для сповіщень про статус',
+        messageLabel: 'Повідомлення',
+        messageHint: 'Можна писати будь-якою мовою',
+        attachmentLabel: 'Вкладення',
+        attachmentOptional: '(необов\'язково)',
+        attachmentHint: 'Прискорює виправлення помилки',
+        chooseFile: 'Вибрати файл',
+        btnSend: 'Надіслати звіт',
+        telegramText: 'Або зв\'яжіться з творцем у Telegram',
+        successTitle: 'Дякуємо!',
+        successText: 'Ваше повідомлення надіслано. Ми обов\'язково розберемося!'
       },
       zh: {
         langLabel: '语言',
