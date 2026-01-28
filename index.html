@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Instagram Follower Export Tool - Export followers to CSV, XLSX, JSON</title>
-  <meta name="description" content="Export Instagram followers and following lists to CSV, XLSX, and JSON formats. Free Chrome extension for marketers, researchers, and social media managers.">
+  <title id="page-title">Instagram Follower Export Tool - Export followers to CSV, XLSX, JSON</title>
+  <meta name="description" id="meta-description" content="Export Instagram followers and following lists to CSV, XLSX, and JSON formats. Free Chrome extension for marketers, researchers, and social media managers.">
   <meta name="keywords" content="instagram export, instagram followers, export followers csv, instagram following list, chrome extension">
   <meta property="og:title" content="Instagram Follower Export Tool">
   <meta property="og:description" content="Export Instagram followers and following lists to CSV, XLSX, and JSON formats.">
@@ -382,6 +382,74 @@
       }
 
     }
+
+    /* Language selector */
+    .lang-selector {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .lang-dropdown { position: relative; }
+    .lang-btn {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #c8c8d8;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      backdrop-filter: blur(8px);
+    }
+    .lang-btn:hover { border-color: var(--accent); color: #fff; }
+    .lang-btn svg { width: 12px; height: 12px; transition: transform 0.15s; }
+    .lang-btn.open svg { transform: rotate(180deg); }
+
+    .lang-menu {
+      position: absolute;
+      top: calc(100% + 4px);
+      right: 0;
+      width: 160px;
+      max-height: 320px;
+      overflow-y: auto;
+      background: rgba(20, 20, 35, 0.95);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: all 0.15s;
+      z-index: 10000;
+      backdrop-filter: blur(12px);
+    }
+    .lang-menu.open { opacity: 1; visibility: visible; transform: translateY(0); }
+    .lang-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 8px 14px;
+      border: none;
+      background: transparent;
+      font-size: 14px;
+      font-family: inherit;
+      color: #c8c8d8;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.15s;
+    }
+    .lang-option:hover { background: rgba(255,255,255,0.05); }
+    .lang-option.active { background: var(--accent-light); color: #fff; }
+    .lang-check { width: 16px; height: 16px; color: var(--accent); display: none; flex-shrink: 0; }
+    .lang-option.active .lang-check { display: block; }
   </style>
 </head>
 <body>
@@ -398,7 +466,17 @@
         <span class="logo-text">Instagram Follower Export Tool</span>
       </a>
       <nav class="header-links">
-        <a href="/support/">Support</a>
+        <div class="lang-selector">
+          <span data-i18n="langLabel">Language</span>
+          <div class="lang-dropdown">
+            <button type="button" class="lang-btn" id="langBtn">
+              <span id="currentLangName">English</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="lang-menu" id="langMenu"></div>
+          </div>
+        </div>
+        <a href="/support/" data-i18n="support">Support</a>
       </nav>
     </header>
 
@@ -406,12 +484,12 @@
     <main class="hero">
       <div class="badge">
         <span class="badge-dot"></span>
-        Chrome Extension
+        <span data-i18n="badge">Chrome Extension</span>
       </div>
 
-      <h1>Export Instagram<br>Followers & Following</h1>
+      <h1 data-i18n="title">Export Instagram<br>Followers & Following</h1>
 
-      <p class="subtitle">
+      <p class="subtitle" data-i18n="subtitle">
         Easily export any Instagram account's followers and following lists 
         to CSV, XLSX, or JSON. Perfect for marketers, researchers, and social media managers.
       </p>
@@ -429,9 +507,9 @@
             <path d="M3.95 6.06L8.54 14" stroke="currentColor" stroke-width="2"/>
             <path d="M10.88 21.94L15.46 14" stroke="currentColor" stroke-width="2"/>
           </svg>
-          Add to Chrome — Free
+          <span data-i18n="ctaButton">Add to Chrome — Free</span>
         </a>
-        <span class="cta-hint">Works with Chrome, Edge, Brave & Opera</span>
+        <span class="cta-hint" data-i18n="ctaHint">Works with Chrome, Edge, Brave & Opera</span>
       </div>
 
       <div class="features">
@@ -440,20 +518,20 @@
             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
             <polyline points="22 4 12 14.01 9 11.01"/>
           </svg>
-          Export full profile data
+          <span data-i18n="feature1">Export full profile data</span>
         </div>
         <div class="feature-tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
           </svg>
-          Fast & reliable
+          <span data-i18n="feature2">Fast & reliable</span>
         </div>
         <div class="feature-tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
             <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
           </svg>
-          Privacy-first
+          <span data-i18n="feature3">Privacy-first</span>
         </div>
       </div>
 
@@ -461,8 +539,134 @@
 
     <!-- Footer -->
     <footer>
-      <p>© 2025 Instagram Follower Export Tool · <a href="/support/">Support</a></p>
+      <p data-i18n="footer">© 2025 Instagram Follower Export Tool · <a href="/support/">Support</a></p>
     </footer>
   </div>
+
+  <script>
+    // Language configuration
+    const LANGUAGES = {
+      en: { name: 'English', native: 'English' },
+      tr: { name: 'Turkish', native: 'Türkçe' }
+    };
+
+    // Translations
+    const translations = {
+      en: {
+        langLabel: 'Language',
+        support: 'Support',
+        badge: 'Chrome Extension',
+        title: 'Export Instagram<br>Followers & Following',
+        subtitle: 'Easily export any Instagram account\'s followers and following lists to CSV, XLSX, or JSON. Perfect for marketers, researchers, and social media managers.',
+        ctaButton: 'Add to Chrome — Free',
+        ctaHint: 'Works with Chrome, Edge, Brave & Opera',
+        feature1: 'Export full profile data',
+        feature2: 'Fast & reliable',
+        feature3: 'Privacy-first',
+        footer: '© 2025 Instagram Follower Export Tool · <a href="/support/">Support</a>',
+        pageTitle: 'Instagram Follower Export Tool - Export followers to CSV, XLSX, JSON',
+        metaDescription: 'Export Instagram followers and following lists to CSV, XLSX, and JSON formats. Free Chrome extension for marketers, researchers, and social media managers.'
+      },
+      tr: {
+        langLabel: 'Dil',
+        support: 'Destek',
+        badge: 'Chrome Uzantısı',
+        title: 'Instagram Takipçi<br>ve Takip Listesini Dışa Aktar',
+        subtitle: 'Herhangi bir Instagram hesabının takipçi ve takip listelerini CSV, XLSX veya JSON formatında kolayca dışa aktarın. Pazarlamacılar, araştırmacılar ve sosyal medya yöneticileri için ideal.',
+        ctaButton: 'Chrome\'a Ekle — Ücretsiz',
+        ctaHint: 'Chrome, Edge, Brave ve Opera ile çalışır',
+        feature1: 'Tam profil verilerini dışa aktar',
+        feature2: 'Hızlı ve güvenilir',
+        feature3: 'Gizlilik öncelikli',
+        footer: '© 2025 Instagram Takipçi Dışa Aktarma Aracı · <a href="/support/?lang=tr">Destek</a>',
+        pageTitle: 'Instagram Takipçi Dışa Aktarma Aracı - Takipçileri CSV, XLSX, JSON\'a aktar',
+        metaDescription: 'Instagram takipçi ve takip listelerini CSV, XLSX ve JSON formatlarına aktarın. Pazarlamacılar, araştırmacılar ve sosyal medya yöneticileri için ücretsiz Chrome uzantısı.'
+      }
+    };
+
+    // Get language from URL parameter
+    function detectLanguage() {
+      try {
+        const urlParams = new URLSearchParams(window.location.search || '');
+        const raw = (urlParams.get('lang') || '').trim().toLowerCase().split('-')[0];
+        if (LANGUAGES[raw]) return raw;
+      } catch (e) {}
+      return 'en';
+    }
+
+    const currentLang = detectLanguage();
+
+    // Translate page
+    function translatePage() {
+      const t = translations[currentLang] || translations.en;
+      
+      // Update text content
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) {
+          if (key === 'footer' || key === 'title') {
+            el.innerHTML = t[key];
+          } else {
+            el.textContent = t[key];
+          }
+        }
+      });
+
+      // Update page title and meta
+      document.getElementById('page-title').textContent = t.pageTitle;
+      document.getElementById('meta-description').setAttribute('content', t.metaDescription);
+      document.documentElement.lang = currentLang;
+    }
+
+    // Build language menu
+    function buildLangMenu() {
+      const menu = document.getElementById('langMenu');
+      const currentLangName = document.getElementById('currentLangName');
+      
+      currentLangName.textContent = LANGUAGES[currentLang].native;
+      
+      menu.innerHTML = Object.entries(LANGUAGES).map(([code, lang]) => `
+        <button type="button" class="lang-option${code === currentLang ? ' active' : ''}" data-lang="${code}">
+          ${lang.native}
+          <svg class="lang-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </button>
+      `).join('');
+    }
+
+    // Language selector toggle
+    document.getElementById('langBtn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      this.classList.toggle('open');
+      document.getElementById('langMenu').classList.toggle('open');
+    });
+
+    // Language selection
+    document.getElementById('langMenu').addEventListener('click', function(e) {
+      const btn = e.target.closest('.lang-option');
+      if (!btn) return;
+      const lang = btn.dataset.lang;
+      if (lang && lang !== currentLang) {
+        const url = new URL(window.location.href);
+        if (lang === 'en') {
+          url.searchParams.delete('lang');
+        } else {
+          url.searchParams.set('lang', lang);
+        }
+        window.location.href = url.toString();
+      }
+    });
+
+    // Close menu on click outside
+    document.addEventListener('click', function() {
+      document.getElementById('langBtn').classList.remove('open');
+      document.getElementById('langMenu').classList.remove('open');
+    });
+
+    // Initialize
+    buildLangMenu();
+    translatePage();
+  </script>
 </body>
 </html>
